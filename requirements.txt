@@ -1,0 +1,10 @@
+requests
+lxml
+bs4
+datetime
+rich
+regex
+pytest
+coverage
+pytest-cov
+colorama
