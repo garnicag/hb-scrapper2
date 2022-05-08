@@ -4,30 +4,38 @@ from bs4 import BeautifulSoup
 from colorama import Fore, Back, Style
 
 #webpage to scrape
-jobs_page = 'https://www.thomann.de/intl/us/harley_benton_te_62cc_lpb.htm'
-# jobs_page = 'https://www.thomann.de/intl/co/harley_benton_te_20mn_bm_standard_series.htm'
+scrapeTarget = 'https://www.thomann.de/intl/search_dir.html?sw=TE-62CC&smcs=0bd321_3144'
 
 #actual html of page
-page = urllib.request.urlopen(jobs_page)
+page = urllib.request.urlopen(scrapeTarget)
 
 #page parsed for bs4
 soup = BeautifulSoup(page, 'html.parser')
 
-title_containers = soup.find('meta', attrs={'property': 'og:title'})
-availability_containers = soup.find('span', attrs={'class': 'fx-availability'} )
-price_containers = soup.find('meta', attrs={'itemprop': 'price'} )
-currency_containers = soup.find('meta', attrs={'itemprop': 'priceCurrency'} )
+for singleItem in soup.find_all('div', attrs={'class': 'product'}):
+    today = Fore.RED + date.today().strftime("%d/%m/%Y")
+    title = Fore.GREEN + singleItem.find(class_="title__manufacturer").text + " " + singleItem.find(class_="title__name").text.strip()
+    dash = Fore.WHITE + "-"
+    color = ""
+    if not 'Bundle' in title:
+        if 'LPB' in title:
+            color = "Lake Placid Blue"
+        elif 'CF' in title:
+            color = "Charcoal Frost"
+        elif 'IS' in title:
+            color = "Inca Silver"
+        elif 'SP' in title:
+            color = "Shell Pink"
+        elif 'DR' in title:
+            color = "Dakota Red"
+        elif 'SFG' in title:
+            color = "Sea Foam Green"
 
-today = date.today().strftime('%d/%m/%Y')
-title = title_containers["content"]
-availability = availability_containers.text.strip()
-price = price_containers["content"]
-currency = currency_containers["content"]
+        availability = Fore.BLUE + singleItem.find(class_="product__availability").text.strip()
+        price = Fore.MAGENTA + singleItem.find(class_="product__price-primary").text.strip()
+        print(today, dash, title + " (" + color + ")", dash, availability, dash, price)
 
-result = Fore.RED + ' ' + today + Fore.WHITE + ' - ' + Fore.GREEN + title + ': ' + Fore.BLUE + availability + Fore.WHITE + ' - ' + Fore.MAGENTA + '$' + price + ' ' + currency
-
-print(result)
-
+""" 
 with open('index.txt', 'w') as output_file:
     output_file.write(result)
-
+ """
