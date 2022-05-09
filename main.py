@@ -1,5 +1,5 @@
 import urllib
-from datetime import date
+from datetime import date, timedelta
 from bs4 import BeautifulSoup
 from rich.console import Console
 from rich.table import Table
@@ -26,7 +26,12 @@ table.add_column("Color", style="yellow")
 table.add_column("Availability", style="blue")
 table.add_column("Price + Sh", style="magenta")
 
-today = date.today().strftime("%d/%m/%Y")
+today = date.today()
+deliveryDateMin = today + timedelta(days=12)
+deliveryDateMax = today + timedelta(days=17)
+deliveryDateMin = deliveryDateMin.strftime("%a %d/%m/%Y")
+deliveryDateMax = deliveryDateMax.strftime("%a %d/%m/%Y")
+today = today.strftime("%d/%m/%Y")
 
 for singleItem in soup.find_all('div', attrs={'class': 'product'}):
     title = singleItem.find(class_="title__manufacturer").text + " " + singleItem.find(class_="title__name").text.strip()
@@ -64,7 +69,7 @@ for singleItem in soup.find_all('div', attrs={'class': 'product'}):
 
 console = Console()
 console.print(table)
-console.print(str(rows) + " results")
+console.print(str(rows) + " results - Delivery between " + deliveryDateMin + " and " + deliveryDateMax)
 console.print(scrapeTarget + "\n")
 
 """ 
