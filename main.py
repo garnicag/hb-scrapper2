@@ -55,10 +55,42 @@ for singleItem in soup.find_all("div", attrs={"class": "product"}):
             color = "Dakota Red"
         elif "SFG" in title:
             color = "Sea Foam Green"
+        elif "SBK" in title:
+            color = "Black Matt"
+        elif "SB" in title:
+            color = "Sunburst High Gloss"
         elif "BK" in title:
             color = "Black High Gloss"
         elif "CAR" in title:
             color = "Candy Apple Red"
+        elif "CA" in title:
+            color = "Candy Apple Red"
+        elif "NA" in title:
+            color = "Natural High Gloss"
+        elif "BM" in title:
+            color = "Blue Metallic Gloss"
+        elif "BE" in title:
+            color = "Blonde High Gloss"
+        elif "VW" in title:
+            color = "Vintage White Translucent"
+        elif "Black Paisley" in title:
+            color = "Black Paisley"
+        elif "Red Blast" in title:
+            color = "Red Blast"
+        elif "Green Blast" in title:
+            color = "Green Blast"
+        elif "Blue Blast" in title:
+            color = "Blue Blast"
+        elif "Orange Blast" in title:
+            color = "Orange Blast"
+        elif "Black Blast" in title:
+            color = "Black Blast"
+        elif "Trans Red" in title:
+            color = "Transparent Red"
+        elif "Trans Blue" in title:
+            color = "Transparent Blue"
+        else:
+            color = "Natural"
 
         availability = singleItem.find(class_="product__availability").text.replace("Disponible dentro de ","").strip()
         price = singleItem.find(class_="product__price-primary").text.replace("$", "").replace(",", ".").strip()
