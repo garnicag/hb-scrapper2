@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A simple Python terminal script to scrape the Harley Benton guitars available from [Thomann](https://thomann.de) with prices (by default converted to COP), color names and estimated delivery dates to Colombia.
+A simple Python terminal script to scrape a list of the Harley Benton guitars available from [Thomann](https://thomann.de) with prices (by default converted to COP), color names and estimated delivery dates to Colombia.
 
 By default only search for all the Harley Benton electric guitars excluding accessories, DIY kits, parts and bundles.
 
