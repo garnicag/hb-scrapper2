@@ -72,7 +72,7 @@ for singleItem in soup.find_all("div", attrs={"class": "product"}):
         elif "BE" in title:
             color = "Blonde High Gloss"
         elif "VW" in title:
-            color = "Vintage White Translucent"
+            color = "Vintage White Transl."
         elif "Black Paisley" in title:
             color = "Black Paisley"
         elif "Red Blast" in title:
