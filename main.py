@@ -60,7 +60,7 @@ for singleItem in soup.find_all("div", attrs={"class": "product"}):
         elif "CAR" in title:
             color = "Candy Apple Red"
 
-        availability = singleItem.find(class_="product__availability").text.strip()
+        availability = singleItem.find(class_="product__availability").text.replace("Disponible dentro de ","").strip()
         price = singleItem.find(class_="product__price-primary").text.replace("$", "").replace(",", ".").strip()
         price = float(price) + shipment
 
