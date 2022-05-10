@@ -1,4 +1,4 @@
-# Thomann.de Harley Benton guitars list
+# Thomann.de Harley Benton CLI guitars list
 
 ## Introduction
 
